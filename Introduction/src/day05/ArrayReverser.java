@@ -1,6 +1,4 @@
-package daya05;
-
-import java.util.Arrays;
+package day05;
 
 /**
  * 문제

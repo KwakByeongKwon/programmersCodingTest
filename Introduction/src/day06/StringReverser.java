@@ -1,4 +1,4 @@
-package daya06;
+package day06;
 
 /**
  * 문제
