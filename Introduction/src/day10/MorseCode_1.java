@@ -1,4 +1,4 @@
-package day09;
+package day10;
 
 /**
  * 문제
@@ -19,23 +19,22 @@ package day09;
 public class MorseCode_1 {
     public static void main(String[] args) {
         String letter  = ".... . .-.. .-.. ---";
-        String result = solution(letter);
 
-        System.out.println("result = " + result);
+        System.out.println(solution(letter));
+
     }
     static String solution(String letter) {
         StringBuilder answer = new StringBuilder();
-        String[] morseList = {".-","-...","-.-.","-..",".",
-                "..-.","--.","....","..",".---", "-.-",".-..",
-                "--","-.","---",".--.","--.-", ".-.","...",
-                "-","..-","...-",".--","-..-", "-.--","--.."};
+        String[] morseList = {".-", "-...", "-.-.", "-..", ".",
+                "..-.", "--.", "....", "..", ".---", "-.-", ".-..",
+                "--", "-.", "---", ".--.", "--.-", ".-.", "...",
+                "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        String[] letters = letter.split(" ");
 
-        String[] morse = letter.split(" ");
-
-        for (String s : morse) {
-            for (int i = 0; i < morseList.length; i++) {
-                if (s.equals(morseList[i])) {
-                    answer.append(Character.toString(i + 'a'));
+        for (int i = 0; i < letters.length; i++) {
+            for (int j = 0; j < morseList.length; j++) {
+                if (letters[i].equals(morseList[j])){
+                    answer.append(Character.toString(j + 'a'));
                 }
             }
         }

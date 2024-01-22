@@ -1,6 +1,4 @@
-package day09;
-
-import java.util.Arrays;
+package day10;
 
 /**
  * 문제
@@ -11,22 +9,21 @@ import java.util.Arrays;
  */
 public class RockScissorsPaper {
     public static void main(String[] args) {
-        String rsp = "2";
+        String rsp = "205";
+        System.out.println(solution(rsp));
     }
 
     static String solution(String rsp) {
         String answer = "";
-        for(int i = 0; i < rsp.length(); i++){
-            char c = rsp.charAt(i);
-            if(c == '2') {
+        for (int i = 0; i < rsp.length(); i++) {
+            if (rsp.charAt(i) == '2'){
                 answer += "0";
-            } else if (c == '0'){
+            } else if (rsp.charAt(i) == '0') {
                 answer += "5";
-            } else if (c == '5') {
+            } else{
                 answer += "2";
             }
         }
-
         return answer;
     }
 }

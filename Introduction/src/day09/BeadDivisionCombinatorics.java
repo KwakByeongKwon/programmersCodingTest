@@ -1,50 +1,36 @@
 package day09;
 
+import java.util.Arrays;
+
 /**
  * 문제
- * 머쓱이는 구슬을 친구들에게 나누어주려고 합니다.
- * 구슬은 모두 다르게 생겼습니다.
- * 머쓱이가 갖고 있는 구슬의 개수 balls와 친구들에게 나누어 줄 구슬 개수 share이 매개변수로 주어질 때,
- * balls개의 구슬 중 share개의 구슬을 고르는 가능한 모든 경우의 수를
- * return 하는 solution 함수를 완성해주세요.
+ * 정수 배열 num_list와 정수 n이 매개변수로 주어집니다.
+ * num_list를 다음 설명과 같이 2차원 배열로 바꿔 return하도록 solution 함수를 완성해주세요.
+ * num_list가 [1, 2, 3, 4, 5, 6, 7, 8] 로 길이가 8이고 n이 2이므로
+ * num_list를 2 * 4 배열로 다음과 같이 변경합니다.
+ * 2차원으로 바꿀 때에는 num_list의 원소들을 앞에서부터 n개씩 나눠 2차원 배열로 변경합니다.
+ *
+ * ex)
+ *        num_list	             n	                 result
+ * [1, 2, 3, 4, 5, 6, 7, 8]	     2	     [[1, 2], [3, 4], [5, 6], [7, 8]]
  */
 public class BeadDivisionCombinatorics {
     public static void main(String[] args) {
-        int balls = 3;
-        int share = 2;
-        System.out.println("result = " + solution(balls, share));
+        int[] num_list = {1, 2, 3, 4, 5, 6, 7, 8};
+        int n = 2;
+        int[][] ret = solution(num_list,n);
+
+        System.out.println("ret = " + Arrays.deepToString(ret));
     }
 
-    static int solution(int balls, int share) {
-        long answer = 1;
-        long mod = 1000000007;
+    static int[][] solution(int[] num_list, int n) {
+        int[][] answer = new int[num_list.length / n][n];
+        int length = num_list.length;
 
-        for(int i = balls; i >= balls - share + 1; i--){
-            answer *= i;
-            answer %= mod;
-        }
-        for(int i = 1; i <= share; i++){
-            answer *= inverse(i, mod);
-            answer %= mod;
+        for (int i = 0; i < length; i++) {
+            answer[i/n][i%n] = num_list[i];
         }
 
-        return (int)answer;
-    }
-
-    private static long inverse(long a, long mod) {
-        long p = mod - 2;
-        long result = 1;
-
-        while(p > 0) {
-            if(p % 2 == 1) {
-                result *= a;
-                result %= mod;
-            }
-            a *= a;
-            a %= mod;
-            p /= 2;
-        }
-
-        return result;
+        return answer;
     }
 }
